@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pro Image Tool</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>🖼️ Pro Image Compressor + Cropper</h1>
+
+    <button onclick="toggleTheme()" id="themeBtn">🌗 Toggle Theme</button>
+
+    <div id="drop-area">
+      <p>📥 Drag & Drop or <label for="upload" class="file-label">Choose File</label></p>
+      <input type="file" id="upload" accept="image/*"/>
+    </div>
+
+    <button id="toggleCropBtn">✂️ Enable Crop</button>
+
+    <div class="preview-area-wrapper">
+      <div class="crop-box" id="cropBox">
+        <div class="resize-handle" data-corner="tl"></div>
+        <div class="resize-handle" data-corner="tr"></div>
+        <div class="resize-handle" data-corner="bl"></div>
+        <div class="resize-handle" data-corner="br"></div>
+      </div>
+      <canvas id="previewCanvas"></canvas>
+    </div>
+
+    <div class="options">
+      <label>💾 Size Limit:
+        <select id="sizeLimit">
+          <option value="default">Default</option>
+          <option value="20000">Under 20KB</option>
+          <option value="50000" selected>Under 50KB</option>
+          <option value="100000">Under 100KB</option>
+          <option value="custom">Custom</option>
+        </select>
+        <input type="number" id="customSize" placeholder="Enter size KB" style="display:none"/>
+      </label>
+
+      <label>📐 Dimensions:
+        <select id="dimensionPreset">
+          <option value="default">Default</option>
+          <option value="custom">Custom</option>
+        </select>
+        <input type="number" id="width" placeholder="Width" style="display:none"/>
+        <input type="number" id="height" placeholder="Height" style="display:none"/>
+        <select id="unit" style="display:none">
+          <option value="px">px</option>
+          <option value="cm">cm</option>
+          <option value="mm">mm</option>
+          <option value="in">inch</option>
+        </select>
+      </label>
+
+      <label>🖼️ Format:
+        <select id="format">
+          <option value="image/jpeg">JPG</option>
+          <option value="image/png">PNG</option>
+          <option value="image/webp">WEBP</option>
+        </select>
+      </label>
+    </div>
+
+    <button id="processBtn">🔧 Compress & Resize</button>
+    <button id="resetBtn">♻️ Reset</button>
+
+    <div id="progress" style="display:none;">🔄 Working... -------> 0%</div>
+    <a id="download" style="display:none" download>⬇️ Download Image</a>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle(\"light-mode\");
+    }
+  </script>
+</body>
+</html>
